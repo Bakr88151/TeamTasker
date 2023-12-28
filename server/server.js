@@ -13,6 +13,10 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.2zggqyz.mongodb.net/?retryW
     console.error(err)
 })
 
+// Get a user by Username\
+
+
+
 // Create a new user
 app.post('/newuser', async(req, res) => {
     try {
@@ -32,6 +36,14 @@ app.post('/newtask', async(req, res) => {
         res.status(500).send(err)
     }
 })
+
+// Update an existing user
+
+
+// Update the state of a task
+
+
+// Delete a Task
 
 app.listen(5000, () => {
     console.log('server is running on http://localhost:5000')
