@@ -33,10 +33,40 @@ function Login() {
             })
         }else if (target === 'cpw') {
             SetCreateAccountvalues(prev => {
-                return {...prev, CPW: event.target.value}
+                return {...prev, PWC: event.target.value}
             })
         }
         };
+
+
+    async function add_user(event){
+        // event.preventDefault();
+        if (CreateAccountValues.username.trim() !== '' && CreateAccountValues.password.trim() !== '' && CreateAccountValues.PWC === CreateAccountValues.password){
+            const requestBody = JSON.stringify({username: CreateAccountValues.username, password: CreateAccountValues.password})
+            try{
+                const response = await fetch('http://localhost:5000/newuser', {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json',
+                },
+                    body: requestBody,
+                });
+                if (response.ok) {
+                    alert('User created succefully')
+                }else if (response.status === 400) {
+                    alert('username already exist')
+                }else{
+                    alert("Unknown errore")
+                }
+            }catch (err){
+                if (err.response && err.response.status === 400) {
+                    alert('')
+                  }
+            }
+        }else{
+            alert('password not the same')
+        }
+    }
 
   return (
     <div>
@@ -63,7 +93,7 @@ function Login() {
 
             <input id='confirmPassword' type='password' placeholder='Confirme Password'
             onChange={(e) => handleCreateChange(e, 'cpw')} value={CreateAccountValues.cpw} />
-            <button id='login' type='submit'>Create Account</button>
+            <button id='login' type='button' onClick={add_user}>Create Account</button>
             <span onClick={() => setlogin(true)}>I ahve an account</span>
         </form>)}
     </div>
