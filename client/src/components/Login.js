@@ -5,18 +5,18 @@ import { useState } from 'react'
 function Login() {
 
     const [login, setlogin] = useState(true)// a state to store if user is in login screen or create account screen true for login
-    const [loginValues, setLoginValues] = useState({UN: '', PW: ''})// to store the inputs values for the login form
-    const [CreateAccountValues, SetCreateAccountvalues] = useState({UN: '', PW: '', PWC: ''})// to store the inputes values for the create form
+    const [loginValues, setLoginValues] = useState({username: '', password: ''})// to store the inputs values for the login form
+    const [CreateAccountValues, SetCreateAccountvalues] = useState({username: '', password: '', PWC: ''})// to store the inputes values for the create form
 
     // to handle the change of values in the Login form and store them in loginValues state
     const handleloginChange = (event, target) => {
         if (target === 'un'){
             setLoginValues(prev => {
-                return {...prev, UN: event.target.value}
+                return {...prev, username: event.target.value}
             })
         }else if (target === 'pw') {
             setLoginValues(prev => {
-                return {...prev, PW: event.target.value}
+                return {...prev, password: event.target.value}
             })
         }
         };
@@ -25,11 +25,11 @@ function Login() {
     const handleCreateChange = (event, target) => {
         if (target === 'un'){
             SetCreateAccountvalues(prev => {
-                return {...prev, UN: event.target.value}
+                return {...prev, username: event.target.value}
             })
         }else if (target === 'pw') {
             SetCreateAccountvalues(prev => {
-                return {...prev, PW: event.target.value}
+                return {...prev, password: event.target.value}
             })
         }else if (target === 'cpw') {
             SetCreateAccountvalues(prev => {

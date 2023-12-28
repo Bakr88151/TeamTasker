@@ -14,11 +14,12 @@ const userSchema = mongoose.Schema(
         rank: {
             type: String,
             enum: ['Standard', 'Manager'],
-            require: [true, "Please Enter The rank"]
+            require: [true, "Please Enter The rank"],
+            default: 'Standard'
         },
         email: {
             type: String,
-            require: [true, "Please Enter email"]
+            require: false
         }
     }
 )
