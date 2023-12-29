@@ -26,7 +26,11 @@ const taskSchema = mongoose.Schema(
         date: {
             type: Date,
             default: Date.now()
-        }
+        },
+        poster: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
     }
 )
 
