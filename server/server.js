@@ -17,7 +17,6 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.2zggqyz.mongodb.net/?retryW
 })
 
 // login:
-
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -73,7 +72,6 @@ app.post('/newtask', async(req, res) => {
 })
 
 // Crerate a new Project
-
 app.post('/newproject', async(req, res) => {
     try {
         const project = await Project.create(req.body)
