@@ -4,11 +4,18 @@ import Login from './components/Login'
 import './App.css'
 
 function App() {
+
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('user')));
+
+  const updateUser = () => {
+    setUser(JSON.parse(sessionStorage.getItem('user')));
+  };
+
   return (
     <div style={{height: "100%"}}>
-      <Navbar username={'Bakr'} />
+      <Navbar user={user} updateUser={updateUser} />
       <main>
-        <Login />
+        <Login updateUser={updateUser}/>
       </main>
     </div>
   )

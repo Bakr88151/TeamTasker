@@ -17,6 +17,33 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.2zggqyz.mongodb.net/?retryW
 
 // login:
 
+app.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        // Find the user in the database by username
+        const user = await User.findOne({ username });
+
+        // If user not found, return an error
+        if (!user) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        // Compare the stored password with the provided password after hashing
+        const hashedPassword = md5Hash(password);
+
+        if (user.password !== hashedPassword) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        // If credentials are valid, return the user details
+        res.status(200).json(user);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 // Create a new user
 app.post('/newuser', async(req, res) => {

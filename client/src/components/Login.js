@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/login.css'
 import { useState } from 'react'
 
-function Login() {
+function Login({ updateUser }) {
 
     const [login, setlogin] = useState(true)// a state to store if user is in login screen or create account screen true for login
     const [loginValues, setLoginValues] = useState({username: '', password: ''})// to store the inputs values for the login form
@@ -68,6 +68,43 @@ function Login() {
         }
     }
 
+    const handleLoginClick = async () => {
+        const requestBody = JSON.stringify({
+          username: loginValues.username,
+          password: loginValues.password,
+        });
+    
+        try {
+          const response = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: requestBody,
+          });
+    
+          if (response.ok) {
+            const user = await response.json();
+    
+            // Store user information in session storage
+            sessionStorage.setItem('user', JSON.stringify(user));
+            // Set session expiration time to 48 hours
+            const expirationTime = new Date().getTime() + 48 * 60 * 60 * 1000;
+            sessionStorage.setItem('expirationTime', expirationTime);
+    
+            alert('Login successful!');
+            console.log(user)
+            // Redirect or perform any other actions after successful login
+          } else {
+            alert('Invalid credentials');
+          }
+        } catch (err) {
+          console.error(err);
+          alert('Unknown error');
+        }
+        updateUser();
+    };
+
   return (
     <div>
         {login?
@@ -80,7 +117,7 @@ function Login() {
             <input id='password' type='password' placeholder='Password'
             onChange={(e) => handleloginChange(e, 'pw')} value={loginValues.PW} />
 
-            <button id='login' type='submit'>Login</button>
+            <button id='login' type='button' onClick={ handleLoginClick }>Login</button>
             <span onClick={() => setlogin(false)}>Create Account</span>
         </form>):
         (<form className='CreateAccountForm'>
