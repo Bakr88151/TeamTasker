@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const User = require("./models/User");
 const Task = require('./models/Task');
+const Project = require('./models/Project')
 const cors = require('cors');
 const md5Hash = require('./helpers')
 const app = express()
@@ -66,6 +67,17 @@ app.post('/newtask', async(req, res) => {
     try {
         const task = await Task.create(req.body)
         res.status(200).json(task)
+    }catch (err){
+        res.status(500).send(err)
+    }
+})
+
+// Crerate a new Project
+
+app.post('/newproject', async(req, res) => {
+    try {
+        const project = await Project.create(req.body)
+        res.status(200).json(project)
     }catch (err){
         res.status(500).send(err)
     }
