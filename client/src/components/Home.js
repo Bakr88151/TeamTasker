@@ -6,6 +6,7 @@ const Home = ({ user }) => {
     const [projects, setProjects] = useState([]);
 
   useEffect(() => {
+
     const fetchUserTasks = async () => {
       try {
         const response = await fetch('http://localhost:5000/usertasks', {
@@ -26,8 +27,10 @@ const Home = ({ user }) => {
         console.error('Error fetching tasks:', error.message);
       }
     };
+    if (user != null){
+      fetchUserTasks();
+    }
 
-    fetchUserTasks();
   }, [user]);
   return (
 <>
