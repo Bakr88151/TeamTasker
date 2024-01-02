@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import Navbar from './components/Navbar'
-import Login from './components/Login'
-import './App.css'
+import React, {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Login from './components/Login';
+import Home from './components/Home';
+import './App.css';
 
 function App() {
 
@@ -15,7 +17,12 @@ function App() {
     <div style={{height: "100%"}}>
       <Navbar user={user} updateUser={updateUser} />
       <main>
-        <Login updateUser={updateUser}/>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login updateUser={updateUser}/>} />
+          <Route path='/' element={<Home user={user} />} />
+        </Routes>
+      </Router>
       </main>
     </div>
   )

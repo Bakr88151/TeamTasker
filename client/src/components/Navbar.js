@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import '../styles/Navbar.css'
+import React, { useState, useEffect } from 'react';
+import '../styles/Navbar.css';
 
 function Navbar( { user, updateUser } ) {
 
   const [showlogout, setShowlogout] = useState(false)
 
+
   const logoutfirststep = () => {
     if (user !== null) {
       setShowlogout(true)
+    }else{
+      window.location.href = '/login'
     }
   }
   const logout = () => {
