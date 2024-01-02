@@ -93,7 +93,7 @@ function Login({ updateUser }) {
             sessionStorage.setItem('expirationTime', expirationTime);
     
             alert('Login successful!');
-            console.log(user)
+            window.location.href = '/'
             // Redirect or perform any other actions after successful login
           } else {
             alert('Invalid credentials');

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/Navbar.css';
 
 function Navbar( { user, updateUser } ) {
@@ -6,8 +6,9 @@ function Navbar( { user, updateUser } ) {
   const [showlogout, setShowlogout] = useState(false)
 
 
-  const logoutfirststep = () => {
+  const logoutfirststep = (event) => {
     if (user !== null) {
+      event.preventDefault()
       setShowlogout(true)
     }else{
       window.location.href = '/login'
@@ -21,7 +22,7 @@ function Navbar( { user, updateUser } ) {
   return (
     <nav>
         <a href='/'>TeamTasker</a>
-        <a href='#' onClick={ logoutfirststep }>{user? user.username: 'login'}</a>
+        <a href='login' onClick={ logoutfirststep }>{user? user.username: 'login'}</a>
         <div className='confirm' style={{ display: showlogout ? 'flex' : 'none' }}>
           <div className='frame'>
             <span>Are you sure you want to logout ?</span>

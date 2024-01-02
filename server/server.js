@@ -74,12 +74,51 @@ app.post('/newtask', async(req, res) => {
 // Crerate a new Project
 app.post('/newproject', async(req, res) => {
     try {
-        const project = await Project.create(req.body)
-        res.status(200).json(project)
-    }catch (err){
-        res.status(500).send(err)
-    }
+        // Extract necessary fields from the request body
+        const { title, description, issuer} = req.body;
+        // const issuerobj = User.findOne({'_id':issuer})
+
+        // if (!issuerobj){
+        //     res.status(500).send('no user')
+        // }
+    
+        // Create the task with the provided references
+        const project = await Project.create({
+          title,
+          description,
+          issuer : issuer, // MongoDB ObjectId reference for the issuer user
+          staff: issuer // Array of MongoDB ObjectId references for staff members
+        });
+    
+        res.status(200).json(project);
+      } catch (err) {
+        res.status(500).send(err);
+      }
 })
+
+// get all the projects where the user is a staff member:
+app.post('/usertasks', async (req, res) => {
+    try {
+      // Assuming the client sends user information in the request body
+      const { _id, username, password, rank } = req.body;
+  
+      // Find the user in the database based on the provided information
+      const user = await User.findOne({ _id, username, password, rank });
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Retrieve tasks associated with the user
+      const projects = await Project.find({ staff: { $in: [_id] } }).exec();
+  
+      // Return the tasks to the client
+      res.json({ projects });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+});
 
 // Update an existing user
 
