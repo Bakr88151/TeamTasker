@@ -118,7 +118,7 @@ function Login({ updateUser }) {
             onChange={(e) => handleloginChange(e, 'pw')} value={loginValues.PW} />
 
             <button id='login' type='button' onClick={ handleLoginClick }>Login</button>
-            <span onClick={() => setlogin(false)}>Create Account</span>
+            <span onClick={() => setlogin(false)} className='createorlogin'>Create Account</span>
         </form>):
         (<form className='CreateAccountForm'>
             <h1>Create Aaccount</h1>
@@ -131,7 +131,7 @@ function Login({ updateUser }) {
             <input id='confirmPassword' type='password' placeholder='Confirme Password'
             onChange={(e) => handleCreateChange(e, 'cpw')} value={CreateAccountValues.cpw} />
             <button id='login' type='button' onClick={add_user}>Create Account</button>
-            <span onClick={() => setlogin(true)}>I ahve an account</span>
+            <span onClick={() => setlogin(true)} className='createorlogin'>I ahve an account</span>
         </form>)}
     </div>
   )

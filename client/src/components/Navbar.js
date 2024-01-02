@@ -22,9 +22,10 @@ function Navbar( { user, updateUser } ) {
   return (
     <nav>
         <a href='/'>TeamTasker</a>
-        <a href='login' onClick={ logoutfirststep }>{user? user.username: 'login'}</a>
+          <a href='login' onClick={ logoutfirststep }>{user? user.username: 'login'}</a>
         <div className='confirm' style={{ display: showlogout ? 'flex' : 'none' }}>
           <div className='frame'>
+            {(user && user.rank === 'Manager') && (<a href='/newproject' className='newproject-button'>Create Project</a>)}
             <span>Are you sure you want to logout ?</span>
             <button id='yes' onClick={ logout }>Yes</button>
             <button id='no' onClick={ ()=> {setShowlogout(false)} }>No</button>

@@ -8,4 +8,7 @@ main{
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Bitter', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }

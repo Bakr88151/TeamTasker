@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ProjectCard from './ProjectCard';
+import '../styles/Home.css';
 
 const Home = ({ user }) => {
     const [projects, setProjects] = useState([]);
@@ -30,15 +32,15 @@ const Home = ({ user }) => {
   return (
 <>
       {user ? (
-        <div>
-          <h1>Welcome, {user.username}!</h1>
-          <h2>Your Tasks:</h2>
+        <div className='Home'>
+          <h1 className='welcom'>Welcome, {user.username}!</h1>
+          <h2>Your Projects:</h2>
           {projects.length > 0 ? (
-            <ul>
+            <div className='project-cards'>
               {projects.map((project) => (
-                <li key={project._id}>{project.title + project.description}</li>
+                <div key={project._id} className='Project-card-container'>{<ProjectCard project={project}/>}</div>
               ))}
-            </ul>
+            </div>
           ) : (
             <h3>No tasks at the moment.</h3>
           )}

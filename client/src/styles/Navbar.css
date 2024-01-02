@@ -8,7 +8,7 @@ nav{
     justify-content: space-between;
     align-items:center;
 }
-nav > a{
+nav a{
     color: #EEEEEE;
     font-family: 'Bitter', serif;
     font-family: 'Montserrat', sans-serif;
@@ -49,10 +49,12 @@ nav  a:hover{
     text-align: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    border: 3px solid red;
 }
+
 .frame  span{
     grid-area: 1 / 1 / 1 / -1;
     width: 100%;
@@ -98,4 +100,10 @@ nav  a:hover{
         margin: 0 20px;
         font-size: 1.2rem;
     }
+}
+.newproject-button{
+    grid-area: 3 / 1 / 4 / 3;
+    align-self: last baseline;
+    margin-bottom: 10px;
+    text-decoration: underline;
 }

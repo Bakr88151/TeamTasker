@@ -1,7 +1,7 @@
 .LoginForm {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr repeat(2, 1fr) 1fr;
+    grid-template-rows: 1fr repeat(4, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 20px;
     background-color: #456990;
@@ -53,21 +53,22 @@ button:hover{
     animation: button_hover 0.5s forwards;
     cursor: pointer;
 }
-span{
+span[class='createorlogin']{
     color:black;
     text-align: center;
     top: 0;
     height: 10px;
-    width: 100px;
+    width: 300px;
+
 }
-span:hover{
+span[class='createorlogin']:hover{
     cursor: pointer;
     color: #222831;
 }
 .CreateAccountForm {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr repeat(4, 1fr);
+    grid-template-rows: 2fr repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 20px;
     background-color: #456990;

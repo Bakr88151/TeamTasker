@@ -1,0 +1,23 @@
+.Home{
+    height: 100%;
+    width: 100%;
+    padding: 0 50px;
+    color: white;
+}
+.project-cards{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 17px;
+    margin: 50px 0;
+}
+.welcom{
+    text-align: left;
+    margin: 20px 0px;
+    color: white;
+}
+.Home > h2{
+    font-size: 2rem;
+    font-weight: 300;
+}
