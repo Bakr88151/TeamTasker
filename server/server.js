@@ -120,6 +120,33 @@ app.post('/usertasks', async (req, res) => {
     }
 });
 
+// Add staff members to a project
+app.post('/addstaff', async (req, res) => {
+    try {
+        // Extract necessary fields from the request body
+        const { _id, staff } = req.body;
+
+        // Find the project in the database based on the provided _id
+        const project = await Project.findById(_id);
+
+        if (!project) {
+            return res.status(404).json({ message: 'Project not found' });
+        }
+
+        // Update the project's staff array with the new staff members
+        project.staff = [...project.staff, ...staff];
+
+        // Save the updated project to the database
+        await project.save();
+
+        // Return the updated project to the client
+        res.json(project);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+    }
+});
+
 // Update an existing user
 
 
