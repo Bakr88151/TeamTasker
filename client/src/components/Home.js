@@ -38,7 +38,9 @@ const Home = ({ user }) => {
         <div className='Home'>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h1 className='welcom'>Welcome, {user.username}!</h1>
-            <button className='NewProject'><b>+</b></button>
+            {JSON.parse(sessionStorage.getItem('user')).rank === "Manager" && (
+              <button className='NewProject'><b>+</b></button>
+            )}
           </div>
           <h2>Your Projects:</h2>
           {projects.length > 0 ? (
@@ -48,7 +50,7 @@ const Home = ({ user }) => {
               ))}
             </div>
           ) : (
-            <h3>No tasks at the moment.</h3>
+            <h3>No Projects at the moment.</h3>
           )}
         </div>
       ) : (
