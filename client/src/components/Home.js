@@ -36,7 +36,10 @@ const Home = ({ user }) => {
 <>
       {user ? (
         <div className='Home'>
-          <h1 className='welcom'>Welcome, {user.username}!</h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h1 className='welcom'>Welcome, {user.username}!</h1>
+            <button className='NewProject'><b>+</b></button>
+          </div>
           <h2>Your Projects:</h2>
           {projects.length > 0 ? (
             <div className='project-cards'>
